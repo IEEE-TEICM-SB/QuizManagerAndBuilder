@@ -11,15 +11,15 @@ $Result = $mySQLConnection->query($Query);
 
 
 echo "<ul class=\"breadcrumb\">";
-echo "<li><a href=\".\">Portal</a></li>";
+echo "<li><a href=\".\">Αρχική</a></li>";
 echo "</ul>";
 
 
 echo "<form action='index.php' method='get'>";
 echo "<table class='table'>";
 echo "<tr>";
-echo "<td><input class=\"form-control\" placeholder='Name of Semester' type=\"text\" name=\"semesterName\" value=\"\"></td>";
-echo "<td><button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"addSemester\">Add Semester</button></td>";
+echo "<td><input class=\"form-control\" placeholder='Όνομα εξαμήνου' type=\"text\" name=\"semesterName\" value=\"\"></td>";
+echo "<td><button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"addSemester\">Προσθήκη εξαμήνου</button></td>";
 echo "</tr>";
 echo "</table>";
 echo "</form>";
@@ -27,9 +27,9 @@ echo "</form>";
 
 echo "<table class=\"table\" style=\"width:100%\">";
 echo "<tr align='center'>";
-echo "<th>ID</th>";
-echo "<th>Name</th>";
-echo "<th>Actions</th>";
+echo "<th>Αναγνωριστικό</th>";
+echo "<th>Όνομα εξαμήνου</th>";
+echo "<th>Ενέργειες</th>";
 echo "</tr>";
 while($Row = $Result->fetch_assoc()) {
     printASemesterObject($Row['id'], $Row['name']);
@@ -40,14 +40,14 @@ function printASemesterObject($id, $name) {
     echo "<form action='index.php' method='get'>";
     echo "<tr>";
     echo "<td>" . $id . "</td>";
-    echo "<td>" . "<input class=\"form-control\" placeholder='Name of Semester' type=\"text\" name=\"semesterName\" style='width:100%' value=\"$name\">" . "</td>";
+    echo "<td>" . "<input class=\"form-control\" placeholder='Όνομα εξαμήνου' type=\"text\" name=\"semesterName\" style='width:100%' value=\"$name\">" . "</td>";
 
     echo "<td>";
     echo "<input type=\"hidden\" name=\"semesterId\" value=\"$id\">";
     echo "<div class=\"btn-group\">";
-    echo "<button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"showLessons\">Show Lessons</button>";
-    echo "<button class='btn btn-success' name=\"action\" type=\"submit\" value=\"updateSemesterName\">Update Name</button>";
-    echo "<button class='btn btn-danger' name=\"action\" type=\"submit\" value=\"deleteSemester\">Delete</button>";
+    echo "<button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"showLessons\">Εμφάνιση μαθημάτων</button>";
+    echo "<button class='btn btn-success' name=\"action\" type=\"submit\" value=\"updateSemesterName\">Ενημέρωση ονόματος</button>";
+    echo "<button class='btn btn-danger' name=\"action\" type=\"submit\" value=\"deleteSemester\">Διαγραφή</button>";
     echo "</div>";
     echo "</td>";
 

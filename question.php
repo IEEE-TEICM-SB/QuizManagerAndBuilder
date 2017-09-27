@@ -7,11 +7,14 @@
  */
 
 require_once ("config.php");
-require_once ("question-ui.php");
 
-if(!isset($_GET['lessonId'], $_GET['numberOfAnswers'])) {
+if(!isset($_GET['lessonId'])) {
     echo "<script>window.location = \"index.php\";</script>";
 }
+
+require_once ("question-ui.php");
+
+
 
 
 // Do backend stuff

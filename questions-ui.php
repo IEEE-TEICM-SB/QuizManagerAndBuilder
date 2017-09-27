@@ -27,7 +27,7 @@ $SemesterName = $Result['name'];
 
 
 echo "<ul class=\"breadcrumb\">";
-echo "<li><a href=\".\">Portal</a></li>";
+echo "<li><a href=\".\">Αρχική</a></li>";
 echo "<li><a href=\"./lessons.php?semesterId=" . $semesterId ."\">" . $SemesterName . "</a></li>";
 echo "<li><a href=\"./questions.php?lessonId=" . $lessonId ."\">" . $LessonName . "</a></li>";
 echo "</ul>";
@@ -40,8 +40,8 @@ echo "<form action='questions.php' method='get'>";
 echo "<table class='table'>";
 echo "<tr>";
 echo "<input type=\"hidden\" name=\"lessonId\" value=\"$lessonId\">";
-echo "<td>Number of Answers</td><td><input class=\"form-control\" type='number' name='numberOfAnswers' min='4' max='6' value='4'></td>";
-echo "<td><button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"addQuestion\">Add Question</button></td>";
+echo "<td>Αριθμός απαντήσεων</td><td><input class=\"form-control\" type='number' name='numberOfAnswers' min='4' max='6' value='4'></td>";
+echo "<td><button class='btn btn-primary' name=\"action\" type=\"submit\" value=\"addQuestion\">Προσθήκη ερώτησης</button></td>";
 echo "</tr>";
 echo "</table>";
 echo "</form>";
@@ -49,10 +49,10 @@ echo "</form>";
 
 echo "<table class='table'>";
 echo "<tr>";
-echo "<th>ID</th>";
-echo "<th>Question</th>";
-echo "<th>Correct Answer</th>";
-echo "<th>Actions</th>";
+echo "<th>Αναγνωριστικό</th>";
+echo "<th>Ερώτηση</th>";
+echo "<th>Σωστή απάντηση</th>";
+echo "<th>Ενέργειες</th>";
 echo "</tr>";
 while($Row = $Result->fetch_assoc()) {
     printAQuestionObject($Row['id'], $Row['question'], $Row['correctAnswer']);
@@ -72,8 +72,10 @@ function printAQuestionObject($id, $question, $correctAnswer) {
     echo "<td>";
     echo "<input type=\"hidden\" name=\"lessonId\" value=\"$lessonId\">";
     echo "<input type=\"hidden\" name=\"questionId\" value=\"$id\">";
-    echo "<button class='btn btn-success' name=\"action\" type=\"submit\" value=\"updateQuestion\">Update</button>";
-    echo "<button class='btn btn-danger' name=\"action\" type=\"submit\" value=\"deleteQuestion\">Delete</button>";
+    echo "<div class=\"btn-group\">";
+    echo "<button class='btn btn-success' name=\"action\" type=\"submit\" value=\"updateQuestion\">Επεξεργασία</button>";
+    echo "<button class='btn btn-danger' name=\"action\" type=\"submit\" value=\"deleteQuestion\">Διαγραφή</button>";
+    echo "</div>";
     echo "</td>";
 
     echo "</tr>";

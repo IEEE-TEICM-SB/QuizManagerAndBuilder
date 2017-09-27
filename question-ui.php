@@ -23,7 +23,7 @@ $SemesterName = $Result['name'];
 
 
 echo "<ul class=\"breadcrumb\">";
-echo "<li><a href=\".\">Portal</a></li>";
+echo "<li><a href=\".\">Αρχική</a></li>";
 echo "<li><a href=\"./lessons.php?semesterId=" . $semesterId ."\">" . $SemesterName . "</a></li>";
 echo "<li><a href=\"./questions.php?lessonId=" . $lessonId ."\">" . $LessonName . "</a></li>";
 echo "</ul>";
@@ -38,10 +38,10 @@ if (isset($_GET['questionId'])) {
     echo "<form action='question.php' method='get'>";
     echo "<table class='table'>";
     echo "<tr align='right'>";
-    echo "<td>Question</td><td><input class=\"form-control\" type=\"text\" name=\"question\" style='width:100%' value=\"" . $Result['question'] . "\"></td>";
+    echo "<td>Ερώτηση</td><td><input class=\"form-control\" type=\"text\" name=\"question\" style='width:100%' value=\"" . $Result['question'] . "\"></td>";
     echo "</tr>";
     echo "<tr align='right'>";
-    echo "<td>Correct Answer</td><td><input class=\"form-control\" type=\"text\" name=\"correctAnswer\" style='width:100%' value=\"" . $Result['correctAnswer'] . "\"></td>";
+    echo "<td>Σωστή απάντηση</td><td><input class=\"form-control\" type=\"text\" name=\"correctAnswer\" style='width:100%' value=\"" . $Result['correctAnswer'] . "\"></td>";
     echo "</tr>";
 
     $Query = "SELECT * FROM answers WHERE questionId = '$questionId'";
@@ -49,7 +49,7 @@ if (isset($_GET['questionId'])) {
     $answersIndex = 1;
     while ($Row = $Result->fetch_assoc()) {
         echo "<tr align='right'>";
-        echo "<td>Answer No$answersIndex</td><td><input class=\"form-control\" type=\"text\" name=\"answerNo$answersIndex\" style='width:100%' value=\"" . $Row['answer'] . "\"></td>";
+        echo "<td>Απάντηση νούμερο $answersIndex</td><td><input class=\"form-control\" type=\"text\" name=\"answerNo$answersIndex\" style='width:100%' value=\"" . $Row['answer'] . "\"></td>";
         $answersIndex++;
         echo "</tr>";
     }
@@ -59,7 +59,7 @@ if (isset($_GET['questionId'])) {
     echo "<input type='hidden' name='numberOfAnswers' value='" . $answersIndex . "'>";
 
     echo "<tr>";
-    echo "<td colspan='2'><button class='btn btn-success' name=\"action\" style='width: 100%' type=\"submit\" value=\"updateQuestion\">Update Question</button></td>";
+    echo "<td colspan='2'><button class='btn btn-success' name=\"action\" style='width: 100%' type=\"submit\" value=\"updateQuestion\">Ενημέρωση ερώτησης</button></td>";
     echo "</tr>";
 
     echo "</form>";
@@ -70,10 +70,10 @@ if (isset($_GET['questionId'])) {
     echo "<form action='question.php' method='get'>";
     echo "<table class='table'>";
     echo "<tr align='right'>";
-    echo "<td>Question</td><td><input class=\"form-control\" type=\"text\" name=\"question\" style='width:100%' value=\"\"></td>";
+    echo "<td>Ερώτηση</td><td><input class=\"form-control\" type=\"text\" name=\"question\" style='width:100%' value=\"\"></td>";
     echo "</tr>";
     echo "<tr align='right'>";
-    echo "<td>Correct Answer</td><td><input class=\"form-control\" type=\"text\" name=\"correctAnswer\" style='width:100%' value=\"\"></td>";
+    echo "<td>Σωστή απάντηση</td><td><input class=\"form-control\" type=\"text\" name=\"correctAnswer\" style='width:100%' value=\"\"></td>";
     echo "</tr>";
 
     echo "<input type='hidden' name='lessonId' value='" . $_GET['lessonId'] . "'>";
@@ -81,12 +81,12 @@ if (isset($_GET['questionId'])) {
 
     for ($i = 1; $i <= $_GET['numberOfAnswers']; $i++) {
         echo "<tr align='right'>";
-        echo "<td>Answer No$i</td><td><input class=\"form-control\" type=\"text\" name=\"answerNo$i\" style='width:100%' value=\"\"></td>";
+        echo "<td>Απάντηση νούμερο $i</td><td><input class=\"form-control\" type=\"text\" name=\"answerNo$i\" style='width:100%' value=\"\"></td>";
         echo "</tr>";
     }
 
     echo "<tr>";
-    echo "<td colspan='2'><button class='btn btn-success' name=\"action\" style='width: 100%' type=\"submit\" value=\"addQuestion\">Add Question</button></td>";
+    echo "<td colspan='2'><button class='btn btn-success' name=\"action\" style='width: 100%' type=\"submit\" value=\"addQuestion\">Προσθήκη ερώτησης</button></td>";
     echo "</tr>";
 
     echo "</table>";

@@ -10,6 +10,26 @@
 // Set 0 for production, set -1 for development
 error_reporting(-1);
 
+require_once ("user.php");
+
+// Check auth
+if(isset($_COOKIE['season_id'])) {
+    if($_COOKIE['season_id'] == md5($username.$password)) {
+        // OK
+    } else {
+        echo "<script>window.location = \"auth.php\";</script>";
+        die();
+    }
+} else {
+    echo "<script>window.location = \"auth.php\";</script>";
+    die();
+}
+
+// Set App Timezone
+date_default_timezone_set('Europe/Athens');
+
+
+
 // Set MySQL Connection Info
 define("Host", "localhost");
 define("Port", "3306");
@@ -20,7 +40,7 @@ define("Database", "quizdatabase");
 // Set App Info
 define("AppName", "Quiz Manager and Builder");
 define("AppDesc", "The Back-End for our Quiz Engine !");
-define("BuildTime", date("Y/m/d"));
+define("BuildTime", "public-" . date("Y-m-d-H-i-s"));
 
 // Try connect with MySQL Server, if can't print a JSON message and exit
 try {

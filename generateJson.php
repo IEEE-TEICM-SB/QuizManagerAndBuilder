@@ -22,6 +22,13 @@ $jsonResponse->title = AppName;
 $jsonResponse->desc = AppDesc;
 $jsonResponse->ver = BuildTime;
 
+if(!isset($_GET['download'])) {
+    // Save version file
+    $fp = fopen('.\public\version.json', 'w');
+    fwrite($fp, json_encode($jsonResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    fclose($fp);
+}
+
 $semesterIndex = 0;
 
 // For all semesters
@@ -69,6 +76,17 @@ while ($rowSemester = $Semesters->fetch_assoc()) {
     }
     $semesterIndex++;
 }
-echo "<code class=\"prettyprint\"><pre>";
-echo json_encode($jsonResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-echo "</pre></code>";
+
+if(isset($_GET['download'])) {
+    echo json_encode($jsonResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+} else {
+    echo "<code class=\"prettyprint\"><pre>";
+    echo json_encode($jsonResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    echo "</pre></code>";
+
+
+    // Save document file
+    $fp = fopen('.\public\document.json', 'w');
+    fwrite($fp, json_encode($jsonResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    fclose($fp);
+}
