@@ -31,13 +31,9 @@ if(isset($_COOKIE['season_id'])) {
     echo '<li><a href="./generateJson.php">Δημοσίευση JSON</a></li>';
     echo '<li><a href="./generateJson.php?download">Λήψη JSON</a></li>';
     echo '<li><a href="./auth.php?logout">Αποσύνδεση</a></li>';
-} else {
-
 }
 echo '</ul>';
 echo '</div>';
 echo '</nav>';
 echo '';
 echo '<div class="container">';
-
-?>

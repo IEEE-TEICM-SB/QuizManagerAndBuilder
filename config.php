@@ -14,12 +14,15 @@ require_once ("user.php");
 
 // Check auth
 if(isset($_COOKIE['season_id'])) {
-    if($_COOKIE['season_id'] == md5($username.$password)) {
-        // OK
-    } else {
+
+    $users = new users();
+
+    if(!$users->checkSession($_COOKIE['season_id'])) {
         echo "<script>window.location = \"auth.php\";</script>";
         die();
     }
+
+
 } else {
     echo "<script>window.location = \"auth.php\";</script>";
     die();
@@ -28,12 +31,10 @@ if(isset($_COOKIE['season_id'])) {
 // Set App Timezone
 date_default_timezone_set('Europe/Athens');
 
-
-
 // Set MySQL Connection Info
 define("Host", "localhost");
 define("Port", "3306");
-define("Username", "root");
+define("Username", "quizuser");
 define("Password", "");
 define("Database", "quizdatabase");
 

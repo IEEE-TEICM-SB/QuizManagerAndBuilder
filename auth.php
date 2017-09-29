@@ -7,14 +7,14 @@
  */
 
 require_once("header.php");
-require_once ("user.php");
+require_once("user.php");
 
-if(isset($_GET['logout'])) {
-    setcookie("season_id", md5(""), time()-3600);  /* expire in 1 hour */
+if (isset($_GET['logout'])) {
+    setcookie("season_id", md5(""), time() - 3600);  /* expire in 1 hour */
     echo "<script>window.location = \"index.php\";</script>";
 }
 
-if(isset($_POST['backLink'])) {
+if (isset($_POST['backLink'])) {
     $backLink = $_POST['backLink'];
 } else {
     $backLink = "index.php";
@@ -34,20 +34,20 @@ echo "</tr>";
 echo "</form>";
 echo "</table>";
 
-if(isset($_POST['username'], $_POST['password'])) {
+if (isset($_POST['username'], $_POST['password'])) {
     // Logic
 
-    if($_POST['username'] == $username) {
-        if($_POST['password'] == $password) {
-            setcookie("season_id", md5($_POST['username'].$_POST['password']), time()+3600);  /* expire in 1 hour */
-            echo "<script>window.location = \"$backLink\";</script>";
-        } else {
-            echo "Λάθος κωδικός";
-        }
-    } else {
-        echo "Λάθος όνομα χρήστη";
-    }
+    $users = new users();
 
+    if ($users->login($_POST['username'], $_POST['password'])) {
+        setcookie("season_id", $users->createSession($_POST['username'], $_POST['password']), time() + 3600);
+        echo "<script>window.location = \"index.php\";</script>";
+        die();
+    } else {
+        echo "<div class=\"alert alert-danger\">";
+        echo "Λάθος κωδικός ή όνομα χρήστη !";
+        echo "</div>";
+    }
 }
 
 require_once("footer.php");
